@@ -9,7 +9,6 @@ public class CafeManagement extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setIconImage(new ImageIcon("images/icon.png").getImage());
-
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(new Color(255,240,219));

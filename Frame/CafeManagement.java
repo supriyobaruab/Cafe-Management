@@ -1,9 +1,10 @@
-package Frame;
+package frame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import actionHandlers.*;
 
-public class CafeManagement extends JFrame {
+public class CafeManagement extends JFrame implements MouseListener,ActionListener {
     
     private JPanel panel;
     private JLabel title, customer, customerN, customerNo, customerA, menu, snacks, tea, information, imagLabel,meow1Img,meow2Img;
@@ -15,7 +16,8 @@ public class CafeManagement extends JFrame {
     private JTextArea info;
     private ImageIcon banner,meow1,meow2;
     private JButton exit, order;
-    ImageIcon icon = new ImageIcon("Images/icon.png");
+    
+    ImageIcon icon = new ImageIcon("images/icon.png");
 
     public CafeManagement() {
         // CAFE MANAGEMENT SYSTEM
@@ -110,6 +112,7 @@ public class CafeManagement extends JFrame {
         americano.setOpaque(true);
         americano.setBackground(pbackground);
         americano.setFont(new Font("Segoe Print", Font.PLAIN, 12));
+        americano.addActionListener(this);
         panel.add(americano);
 
         espresso = new JRadioButton("Espresso");
@@ -140,11 +143,11 @@ public class CafeManagement extends JFrame {
         coffeeGroup.add(latte);
         coffeeGroup.add(cappuccino);
         //meow1
-        meow1 = new ImageIcon("Images/meow1.png");
+        meow1 = new ImageIcon("images/meow1.png");
         meow1Img = new JLabel(meow1, JLabel.LEFT);
         meow1Img.setBounds(550, 305, 800, 100);
         //meow1
-        meow2 = new ImageIcon("Images/meow2.png");
+        meow2 = new ImageIcon("images/meow2.png");
         meow2Img = new JLabel(meow2, JLabel.LEFT);
         meow2Img.setBounds(230, 180, 800, 100);
         panel.add(meow2Img);
@@ -240,9 +243,26 @@ public class CafeManagement extends JFrame {
         exit = new JButton("Exit");
         exit.setBounds(510, 370, 130, 35);
         exit.setBackground(new Color(198, 151, 88));
+        exit.addActionListener(this);
         panel.add(exit);
         panel.add(meow1Img);
         
         super.add(panel);
+
     }
+        //Back end logics 
+        public void mouseClicked(MouseEvent me){
+        }
+        public void mousePressed(MouseEvent me){}
+        public void mouseReleased(MouseEvent me) {}
+
+        public void mouseEntered(MouseEvent me) {}
+
+        public void mouseExited(MouseEvent me) {}
+
+        public void actionPerformed(ActionEvent ae) {
+            new ExitHandler(exit).handle(ae);
+            new CoffeeHandler(americano,espresso,latte,cappuccino).handle(ae);
+        }
+    
 }

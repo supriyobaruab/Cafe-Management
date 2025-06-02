@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 public class CoffeeHandler {
-    private JRadioButton americano, espresso, latte, cappuccino;
     private int aq, eq, lq, cq;
 
     public CoffeeHandler(JRadioButton americano, JRadioButton espresso, JRadioButton latte, JRadioButton cappuccino) {
@@ -29,13 +28,10 @@ public class CoffeeHandler {
                 if (aqs == null) {
                     americano.setSelected(false);
                     break;
-                }
-
-                if (aqs.trim().equals("")) {
+                } else if (aqs.trim().equals("")) {
                     JOptionPane.showMessageDialog(null, "Enter a valid number");
                     continue;
                 }
-
                 try {
                     int quantity = Integer.parseInt(aqs.trim());
                     if (quantity > 0) {

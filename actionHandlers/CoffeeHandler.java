@@ -6,6 +6,7 @@ import javax.swing.JRadioButton;
 
 public class CoffeeHandler {
     private int aq, eq, lq, cq;
+    private JRadioButton americano, espresso, latte, cappuccino;
 
     public CoffeeHandler(JRadioButton americano, JRadioButton espresso, JRadioButton latte, JRadioButton cappuccino) {
         this.americano = americano;

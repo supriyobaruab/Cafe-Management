@@ -150,7 +150,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         // meow1
         meow1 = new ImageIcon("images/meow1.png");
         meow1Img = new JLabel(meow1, JLabel.LEFT);
-        meow1Img.setBounds(550, 305, 800, 100);
+        meow1Img.setBounds(550, 315, 800, 100); // 305
+        meow1Img.addMouseListener(this);
         // meow1
         meow2 = new ImageIcon("images/meow2.png");
         meow2Img = new JLabel(meow2, JLabel.LEFT);
@@ -203,6 +204,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         milktea.setOpaque(true);
         milktea.setBackground(pbackground);
         milktea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
+        milktea.addActionListener(this);
         panel.add(milktea);
         // Tea Section left
         tea = new JLabel("Tea");
@@ -214,6 +216,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         greentea.setBounds(350, 270, 120, 25);
         greentea.setOpaque(true);
         greentea.setBackground(pbackground);
+        greentea.addActionListener(this);
         greentea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(greentea);
 
@@ -221,6 +224,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         blacktea.setBounds(350, 300, 120, 25);
         blacktea.setOpaque(true);
         blacktea.setBackground(pbackground);
+        blacktea.addActionListener(this);
         blacktea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(blacktea);
 
@@ -228,6 +232,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         herbaltea.setBounds(350, 330, 120, 25);
         herbaltea.setOpaque(true);
         herbaltea.setBackground(pbackground);
+        herbaltea.addActionListener(this);
         herbaltea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(herbaltea);
 
@@ -250,6 +255,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         exit.setBounds(510, 370, 130, 35);
         exit.setBackground(new Color(198, 151, 88));
         exit.addActionListener(this);
+        exit.addMouseListener(this);
         panel.add(exit);
         panel.add(meow1Img);
 
@@ -268,9 +274,19 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
     }
 
     public void mouseEntered(MouseEvent me) {
+        if (me.getSource() == exit) {
+            for (int i = 315; i > 305; i--) {
+                meow1Img.setBounds(550, i, 800, 100);
+            }
+        }
     }
 
     public void mouseExited(MouseEvent me) {
+        if (me.getSource() == exit) {
+            for (int i = 305; i < 315; i++) {
+                meow1Img.setBounds(550, i, 800, 100);
+            }
+        }
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -280,18 +296,15 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
             CoffeeHandler coffeeHandler = new CoffeeHandler(americano, espresso, latte, cappuccino, coffeeGroup);
             coffeeHandler.handle(ae);
 
-            int coffeeBill = coffeeHandler.getAmericanoQunatity()
-                    + coffeeHandler.getLatteQunatity()
-                    + coffeeHandler.getEspressoQunatity()
-                    + coffeeHandler.getCappuchinoQunatity();
-            System.out.println("Coffee Bill: " + coffeeBill);
+            String coffeInfo = coffeeHandler.getCoffeeInfo();
+            System.out.println("Coffee Bill: " + coffeInfo);
         }
         if (ae.getSource() == greentea || ae.getSource() == blacktea || ae.getSource() == herbaltea || ae
-                .getSource() == matcha) {
+                .getSource() == matcha || ae.getSource() == milktea) {
             TeaHandler teahandler = new TeaHandler(greentea, blacktea, herbaltea, matcha, milktea, teaGroup);
             teahandler.handle(ae);
 
-            int teaQuantity = teahandler.getTeaInfo();
+            String teaQuantity = teahandler.getTeaInfo();
             System.out.println("Tea quantity: " + teaQuantity);
         }
     }

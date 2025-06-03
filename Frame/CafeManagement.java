@@ -12,9 +12,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
             meow1Img, meow2Img;
     private Color pbackground;
     private JTextField name, no, address;
-    private JRadioButton americano, espresso, latte, cappuccino, greentea, blacktea, herbaltea, matcha, milktea;
+    private JCheckBox americano, espresso, latte, cappuccino, greentea, blacktea, herbaltea, matcha, milktea;
     private JCheckBox cheese, pastry, croissant;
-    private ButtonGroup coffeeGroup, teaGroup;
     private JTextArea info;
     private ImageIcon banner, meow1, meow2;
     private JButton exit, order;
@@ -109,7 +108,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         menu.setFont(new Font("Segoe Print", Font.BOLD, 16));
         panel.add(menu);
 
-        americano = new JRadioButton("Americano");
+        americano = new JCheckBox("Americano");
         americano.setBounds(350, 100, 150, 25);
         americano.setOpaque(true);
         americano.setBackground(pbackground);
@@ -117,7 +116,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         americano.addActionListener(this);
         panel.add(americano);
 
-        espresso = new JRadioButton("Espresso");
+        espresso = new JCheckBox("Espresso");
         espresso.setBounds(350, 130, 150, 25);
         espresso.setOpaque(true);
         espresso.setBackground(pbackground);
@@ -125,7 +124,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         espresso.addActionListener(this);
         panel.add(espresso);
 
-        latte = new JRadioButton("Latte");
+        latte = new JCheckBox("Latte");
         latte.setBounds(350, 160, 150, 25);
         latte.setOpaque(true);
         latte.setBackground(pbackground);
@@ -133,7 +132,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         latte.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(latte);
 
-        cappuccino = new JRadioButton("Cappuccino");
+        cappuccino = new JCheckBox("Cappuccino");
         cappuccino.setBounds(350, 190, 150, 25);
         cappuccino.setOpaque(true);
         cappuccino.setBackground(pbackground);
@@ -141,12 +140,6 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         cappuccino.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(cappuccino);
 
-        // Coffee Group
-        coffeeGroup = new ButtonGroup();
-        coffeeGroup.add(americano);
-        coffeeGroup.add(espresso);
-        coffeeGroup.add(latte);
-        coffeeGroup.add(cappuccino);
         // meow1
         meow1 = new ImageIcon("images/meow1.png");
         meow1Img = new JLabel(meow1, JLabel.LEFT);
@@ -191,7 +184,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         tea.setFont(new Font("Segoe Print", Font.BOLD, 16));
         panel.add(tea);
 
-        matcha = new JRadioButton("Matcha Tea");
+        matcha = new JCheckBox("Matcha Tea");
         matcha.setBounds(530, 270, 120, 25);
         matcha.setOpaque(true);
         matcha.setBackground(pbackground);
@@ -199,7 +192,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         matcha.addActionListener(this);
         panel.add(matcha);
 
-        milktea = new JRadioButton("Milk Tea");
+        milktea = new JCheckBox("Milk Tea");
         milktea.setBounds(530, 300, 120, 25);
         milktea.setOpaque(true);
         milktea.setBackground(pbackground);
@@ -212,7 +205,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         tea.setFont(new Font("Segoe Print", Font.BOLD, 16));
         panel.add(tea);
 
-        greentea = new JRadioButton("Green Tea");
+        greentea = new JCheckBox("Green Tea");
         greentea.setBounds(350, 270, 120, 25);
         greentea.setOpaque(true);
         greentea.setBackground(pbackground);
@@ -220,7 +213,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         greentea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(greentea);
 
-        blacktea = new JRadioButton("Black Tea");
+        blacktea = new JCheckBox("Black Tea");
         blacktea.setBounds(350, 300, 120, 25);
         blacktea.setOpaque(true);
         blacktea.setBackground(pbackground);
@@ -228,21 +221,13 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         blacktea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(blacktea);
 
-        herbaltea = new JRadioButton("Herbal Tea");
+        herbaltea = new JCheckBox("Herbal Tea");
         herbaltea.setBounds(350, 330, 120, 25);
         herbaltea.setOpaque(true);
         herbaltea.setBackground(pbackground);
         herbaltea.addActionListener(this);
         herbaltea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(herbaltea);
-
-        // Tea Group
-        teaGroup = new ButtonGroup();
-        teaGroup.add(greentea);
-        teaGroup.add(blacktea);
-        teaGroup.add(herbaltea);
-        teaGroup.add(matcha);
-        teaGroup.add(milktea);
 
         // Order Button
         order = new JButton("Order");
@@ -290,27 +275,6 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
     }
 
     public void actionPerformed(ActionEvent ae) {
-        String coffee, tea, snacks, name, number, address;
         new ExitHandler(exit).handle(ae);
-        if (ae.getSource() == americano || ae.getSource() == espresso || ae.getSource() == latte || ae
-                .getSource() == cappuccino) {
-            CoffeeHandler coffeeHandler = new CoffeeHandler(americano, espresso, latte, cappuccino, coffeeGroup);
-            coffeeHandler.handle(ae);
-
-            String coffeInfo = coffeeHandler.getCoffeeInfo();
-            System.out.println("Coffee Bill: " + coffeInfo);
-        }
-        if (ae.getSource() == greentea || ae.getSource() == blacktea || ae.getSource() == herbaltea || ae
-                .getSource() == matcha || ae.getSource() == milktea) {
-            TeaHandler teahandler = new TeaHandler(greentea, blacktea, herbaltea, matcha, milktea, teaGroup);
-            teahandler.handle(ae);
-
-            String teaQuantity = teahandler.getTeaInfo();
-            System.out.println("Tea quantity: " + teaQuantity);
-        }
-        if (ae.getSource() == order) {
-            
-        }
     }
-
 }

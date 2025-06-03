@@ -195,6 +195,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         matcha.setOpaque(true);
         matcha.setBackground(pbackground);
         matcha.setFont(new Font("Segoe Print", Font.PLAIN, 12));
+        matcha.addActionListener(this);
         panel.add(matcha);
 
         milktea = new JRadioButton("Milk Tea");
@@ -274,11 +275,25 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
 
     public void actionPerformed(ActionEvent ae) {
         new ExitHandler(exit).handle(ae);
-        CoffeeHandler coffeeHandler = new CoffeeHandler(americano, espresso, latte, cappuccino, coffeeGroup);
-        coffeeHandler.handle(ae);
-        int coffeeBill = coffeeHandler.getAmericanoQunatity() + coffeeHandler.getLatteQunatity()
-                + coffeeHandler.getEspressoQunatity() + coffeeHandler.getCappuchinoQunatity();
-        System.out.println("Total coffee bill :" + coffeeBill);
+        if (ae.getSource() == americano || ae.getSource() == espresso || ae.getSource() == latte || ae
+                .getSource() == cappuccino) {
+            CoffeeHandler coffeeHandler = new CoffeeHandler(americano, espresso, latte, cappuccino, coffeeGroup);
+            coffeeHandler.handle(ae);
+
+            int coffeeBill = coffeeHandler.getAmericanoQunatity()
+                    + coffeeHandler.getLatteQunatity()
+                    + coffeeHandler.getEspressoQunatity()
+                    + coffeeHandler.getCappuchinoQunatity();
+            System.out.println("Coffee Bill: " + coffeeBill);
+        }
+        if (ae.getSource() == greentea || ae.getSource() == blacktea || ae.getSource() == herbaltea || ae
+                .getSource() == matcha) {
+            TeaHandler teahandler = new TeaHandler(greentea, blacktea, herbaltea, matcha, milktea, teaGroup);
+            teahandler.handle(ae);
+
+            int teaQuantity = teahandler.getTeaInfo();
+            System.out.println("Tea quantity: " + teaQuantity);
+        }
     }
 
 }

@@ -8,6 +8,10 @@ import javax.swing.JRadioButton;
 
 public class CoffeeHandler {
     private int aq, eq, lq, cq;
+    private int americanoPrice = 350;
+    private int lattePrice = 310;
+    private int espressoPrice = 260;
+    private int cappuccinoPrice = 300;
     private JRadioButton americano, espresso, latte, cappuccino;
     private ButtonGroup coffeeGroup;
 
@@ -120,8 +124,8 @@ public class CoffeeHandler {
                 try {
                     int quantity = Integer.parseInt(cqs.trim());
                     if (quantity > 0) {
-                        lvalid = true;
-                        eq = quantity;
+                        cvalid = true;
+                        cq = quantity;
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Please enter a positive number");
@@ -134,18 +138,18 @@ public class CoffeeHandler {
     }
 
     public int getAmericanoQunatity() {
-        return aq;
+        return aq * americanoPrice;
     }
 
     public int getEspressoQunatity() {
-        return eq;
+        return eq * espressoPrice;
     }
 
     public int getLatteQunatity() {
-        return lq;
+        return lq * lattePrice;
     }
 
     public int getCappuchinoQunatity() {
-        return cq;
+        return cq * cappuccinoPrice;
     }
 }

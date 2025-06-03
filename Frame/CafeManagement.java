@@ -1,22 +1,24 @@
 package frame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import actionHandlers.*;
 
-public class CafeManagement extends JFrame implements MouseListener,ActionListener {
-    
+public class CafeManagement extends JFrame implements MouseListener, ActionListener {
+
     private JPanel panel;
-    private JLabel title, customer, customerN, customerNo, customerA, menu, snacks, tea, information, imagLabel,meow1Img,meow2Img;
+    private JLabel title, customer, customerN, customerNo, customerA, menu, snacks, tea, information, imagLabel,
+            meow1Img, meow2Img;
     private Color pbackground;
     private JTextField name, no, address;
-    private JRadioButton americano, espresso, latte, cappuccino, greentea, blacktea, herbaltea,matcha,milktea;
+    private JRadioButton americano, espresso, latte, cappuccino, greentea, blacktea, herbaltea, matcha, milktea;
     private JCheckBox cheese, pastry, croissant;
     private ButtonGroup coffeeGroup, teaGroup;
     private JTextArea info;
-    private ImageIcon banner,meow1,meow2;
+    private ImageIcon banner, meow1, meow2;
     private JButton exit, order;
-    
+
     ImageIcon icon = new ImageIcon("images/icon.png");
 
     public CafeManagement() {
@@ -120,12 +122,14 @@ public class CafeManagement extends JFrame implements MouseListener,ActionListen
         espresso.setOpaque(true);
         espresso.setBackground(pbackground);
         espresso.setFont(new Font("Segoe Print", Font.PLAIN, 12));
+        espresso.addActionListener(this);
         panel.add(espresso);
 
         latte = new JRadioButton("Latte");
         latte.setBounds(350, 160, 150, 25);
         latte.setOpaque(true);
         latte.setBackground(pbackground);
+        latte.addActionListener(this);
         latte.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(latte);
 
@@ -133,6 +137,7 @@ public class CafeManagement extends JFrame implements MouseListener,ActionListen
         cappuccino.setBounds(350, 190, 150, 25);
         cappuccino.setOpaque(true);
         cappuccino.setBackground(pbackground);
+        cappuccino.addActionListener(this);
         cappuccino.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(cappuccino);
 
@@ -142,16 +147,16 @@ public class CafeManagement extends JFrame implements MouseListener,ActionListen
         coffeeGroup.add(espresso);
         coffeeGroup.add(latte);
         coffeeGroup.add(cappuccino);
-        //meow1
+        // meow1
         meow1 = new ImageIcon("images/meow1.png");
         meow1Img = new JLabel(meow1, JLabel.LEFT);
         meow1Img.setBounds(550, 305, 800, 100);
-        //meow1
+        // meow1
         meow2 = new ImageIcon("images/meow2.png");
         meow2Img = new JLabel(meow2, JLabel.LEFT);
         meow2Img.setBounds(230, 180, 800, 100);
         panel.add(meow2Img);
-        
+
         // Snacks Section
         snacks = new JLabel("Snacks");
         snacks.setBounds(530, 50, 150, 50);
@@ -179,12 +184,12 @@ public class CafeManagement extends JFrame implements MouseListener,ActionListen
         croissant.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(croissant);
 
-        //Tea Secton Right 
+        // Tea Secton Right
         tea = new JLabel("Tea");
         tea.setBounds(530, 220, 150, 50);
         tea.setFont(new Font("Segoe Print", Font.BOLD, 16));
         panel.add(tea);
-        
+
         matcha = new JRadioButton("Matcha Tea");
         matcha.setBounds(530, 270, 120, 25);
         matcha.setOpaque(true);
@@ -246,23 +251,34 @@ public class CafeManagement extends JFrame implements MouseListener,ActionListen
         exit.addActionListener(this);
         panel.add(exit);
         panel.add(meow1Img);
-        
+
         super.add(panel);
 
     }
-        //Back end logics 
-        public void mouseClicked(MouseEvent me){
-        }
-        public void mousePressed(MouseEvent me){}
-        public void mouseReleased(MouseEvent me) {}
 
-        public void mouseEntered(MouseEvent me) {}
+    // Back end logics
+    public void mouseClicked(MouseEvent me) {
+    }
 
-        public void mouseExited(MouseEvent me) {}
+    public void mousePressed(MouseEvent me) {
+    }
 
-        public void actionPerformed(ActionEvent ae) {
-            new ExitHandler(exit).handle(ae);
-            new CoffeeHandler(americano,espresso,latte,cappuccino).handle(ae);
-        }
-    
+    public void mouseReleased(MouseEvent me) {
+    }
+
+    public void mouseEntered(MouseEvent me) {
+    }
+
+    public void mouseExited(MouseEvent me) {
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        new ExitHandler(exit).handle(ae);
+        CoffeeHandler coffeeHandler = new CoffeeHandler(americano, espresso, latte, cappuccino, coffeeGroup);
+        coffeeHandler.handle(ae);
+        int coffeeBill = coffeeHandler.getAmericanoQunatity() + coffeeHandler.getLatteQunatity()
+                + coffeeHandler.getEspressoQunatity() + coffeeHandler.getCappuchinoQunatity();
+        System.out.println("Total coffee bill :" + coffeeBill);
+    }
+
 }

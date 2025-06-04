@@ -1,49 +1,63 @@
 package actionHandlers;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import javax.swing.*;
 
-public class MenuHandler {
-    private JCheckBox[] items;
-    private String[] itemNames;
-    private String[] inputs;
-    private int[] itemQuantities;
+public class MenuHandler implements ActionListener {
+    private JCheckBox items;
+    private String name;
+    private int price;
+    private int amount;
+    private int quantity;
+    private String itemSummary = "";
 
-    public MenuHandler(
-            JCheckBox americano,
-            JCheckBox espresso,
-            JCheckBox latte,
-            JCheckBox cappuccino,
-            JCheckBox greentea,
-            JCheckBox blacktea,
-            JCheckBox herbaltea,
-            JCheckBox matcha,
-            JCheckBox milktea,
-            JCheckBox cheese,
-            JCheckBox pastry,
-            JCheckBox croissant) {
-
-        items = new JCheckBox[] {
-                americano, espresso, latte, cappuccino,
-                greentea, blacktea, herbaltea, matcha, milktea,
-                cheese, pastry, croissant
-        };
-
-        itemNames = new String[] {
-                "Americano", "Espresso", "Latte", "Cappuccino",
-                "Green Tea", "Black Tea", "Herbal Tea", "Matcha", "Milk Tea",
-                "Cheese Paprika", "Pastry", "Croissant"
-        };
-
-        itemQuantities = new int[items.length];
-        inputs = new String[12];
+    public MenuHandler(JCheckBox items, int price, String name) {
+        this.items = items;
+        this.price = price;
+        this.name = name;
     }
 
-    public void handle(ActionEvent ae) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].isSelected()) {
-                inputs[i] = JOptionPane.showInputDialog("Enter the quantity");
+    public void actionPerformed(ActionEvent ae) {
+        if (items.isSelected()) {
+            String input = JOptionPane.showInputDialog("Enter the quantity");
+            if (input == null || input.trim().equals("")) {
+                items.setSelected(false);
+                return;
             }
+            try {
+                quantity = Integer.parseInt(input.trim());
+                if (quantity < 1) {
+                    JOptionPane.showMessageDialog(null, "Quantity must be at least 1.");
+                    items.setSelected(false);
+                    return;
+                }
+                amount = price * quantity;
+                itemSummary = "Item: " + name + ", Quantity: " + quantity + ", Price: ৳" + price + ", Amount: ৳"
+                        + amount + "\n";
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Enter a valid number");
+                items.setSelected(false);
+            }
+        } else {
+            itemSummary = "";
         }
+    }
+
+    public String getItemSummary() {
+        return itemSummary;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public JCheckBox getCheckBox() {
+        return items;
+    }
+
+    public void reset() {
+        quantity = 0;
+        amount = 0;
+        itemSummary = "";
     }
 }

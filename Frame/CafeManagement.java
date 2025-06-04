@@ -17,6 +17,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
     private JTextArea info;
     private ImageIcon banner, meow1, meow2;
     private JButton exit, order;
+    private MenuHandler[] handlers;
 
     ImageIcon icon = new ImageIcon("images/icon.png");
 
@@ -113,7 +114,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         americano.setOpaque(true);
         americano.setBackground(pbackground);
         americano.setFont(new Font("Segoe Print", Font.PLAIN, 12));
-        americano.addActionListener(this);
+        MenuHandler americanoHandler = new MenuHandler(americano, 300, "Americano");
+        americano.addActionListener(americanoHandler);
         panel.add(americano);
 
         espresso = new JCheckBox("Espresso");
@@ -121,14 +123,16 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         espresso.setOpaque(true);
         espresso.setBackground(pbackground);
         espresso.setFont(new Font("Segoe Print", Font.PLAIN, 12));
-        espresso.addActionListener(this);
+        MenuHandler espressoHandler = new MenuHandler(espresso, 300, "Espresso");
+        espresso.addActionListener(espressoHandler);
         panel.add(espresso);
 
         latte = new JCheckBox("Latte");
         latte.setBounds(350, 160, 150, 25);
         latte.setOpaque(true);
         latte.setBackground(pbackground);
-        latte.addActionListener(this);
+        MenuHandler latteHandler = new MenuHandler(latte, 300, "Latte");
+        latte.addActionListener(latteHandler);
         latte.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(latte);
 
@@ -136,7 +140,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         cappuccino.setBounds(350, 190, 150, 25);
         cappuccino.setOpaque(true);
         cappuccino.setBackground(pbackground);
-        cappuccino.addActionListener(this);
+        MenuHandler cappuccinoHandler = new MenuHandler(cappuccino, 300, "Cappuccino");
+        cappuccino.addActionListener(cappuccinoHandler);
         cappuccino.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(cappuccino);
 
@@ -161,6 +166,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         cheese.setBounds(530, 100, 150, 25);
         cheese.setOpaque(true);
         cheese.setBackground(pbackground);
+        MenuHandler cheeseHandler = new MenuHandler(cheese, 300, "Cheese");
+        cheese.addActionListener(cheeseHandler);
         cheese.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(cheese);
 
@@ -168,6 +175,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         pastry.setBounds(530, 130, 150, 25);
         pastry.setOpaque(true);
         pastry.setBackground(pbackground);
+        MenuHandler pastyHandler = new MenuHandler(pastry, 300, "Pastry");
+        pastry.addActionListener(pastyHandler);
         pastry.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(pastry);
 
@@ -175,6 +184,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         croissant.setBounds(530, 160, 150, 25);
         croissant.setOpaque(true);
         croissant.setBackground(pbackground);
+        MenuHandler croissantHandler = new MenuHandler(croissant, 300, "Croissant");
+        croissant.addActionListener(croissantHandler);
         croissant.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(croissant);
 
@@ -188,8 +199,9 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         matcha.setBounds(530, 270, 120, 25);
         matcha.setOpaque(true);
         matcha.setBackground(pbackground);
+        MenuHandler matchaHandler = new MenuHandler(matcha, 300, "Matcha");
+        matcha.addActionListener(matchaHandler);
         matcha.setFont(new Font("Segoe Print", Font.PLAIN, 12));
-        matcha.addActionListener(this);
         panel.add(matcha);
 
         milktea = new JCheckBox("Milk Tea");
@@ -197,7 +209,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         milktea.setOpaque(true);
         milktea.setBackground(pbackground);
         milktea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
-        milktea.addActionListener(this);
+        MenuHandler milkteaHandler = new MenuHandler(milktea, 300, "milktea");
+        milktea.addActionListener(milkteaHandler);
         panel.add(milktea);
         // Tea Section left
         tea = new JLabel("Tea");
@@ -209,7 +222,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         greentea.setBounds(350, 270, 120, 25);
         greentea.setOpaque(true);
         greentea.setBackground(pbackground);
-        greentea.addActionListener(this);
+        MenuHandler greanTeaHandler = new MenuHandler(greentea, 300, "Green tea");
+        greentea.addActionListener(greanTeaHandler);
         greentea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(greentea);
 
@@ -217,7 +231,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         blacktea.setBounds(350, 300, 120, 25);
         blacktea.setOpaque(true);
         blacktea.setBackground(pbackground);
-        blacktea.addActionListener(this);
+        MenuHandler blackteaHandler = new MenuHandler(blacktea, 300, "Black tea");
+        blacktea.addActionListener(blackteaHandler);
         blacktea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(blacktea);
 
@@ -225,7 +240,8 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         herbaltea.setBounds(350, 330, 120, 25);
         herbaltea.setOpaque(true);
         herbaltea.setBackground(pbackground);
-        herbaltea.addActionListener(this);
+        MenuHandler herbalteaHandler = new MenuHandler(herbaltea, 300, "Herbal tea");
+        herbaltea.addActionListener(herbalteaHandler);
         herbaltea.setFont(new Font("Segoe Print", Font.PLAIN, 12));
         panel.add(herbaltea);
 
@@ -233,6 +249,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         order = new JButton("Order");
         order.setBounds(350, 370, 130, 35);
         order.setBackground(new Color(198, 151, 88));
+        order.addActionListener(this);
         panel.add(order);
 
         // Exit Button
@@ -245,6 +262,9 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
         panel.add(meow1Img);
 
         super.add(panel);
+        handlers = new MenuHandler[] { americanoHandler, espressoHandler, latteHandler, cappuccinoHandler,
+                cheeseHandler, pastyHandler, croissantHandler, matchaHandler, milkteaHandler, greanTeaHandler,
+                blackteaHandler, herbalteaHandler };
 
     }
 
@@ -276,5 +296,64 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
 
     public void actionPerformed(ActionEvent ae) {
         new ExitHandler(exit).handle(ae);
+
+        if (ae.getSource() == order) {
+
+            String customerName = name.getText().trim();
+            String customerNumber = no.getText().trim();
+            String customerAddress = address.getText().trim();
+
+            if (customerName.isEmpty() || customerNumber.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter both customer name and number.", "Missing Info",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            boolean atLeastOneSelected = false;
+            for (int i = 0; i < handlers.length; i++) {
+                if (handlers[i].getCheckBox().isSelected()) {
+                    atLeastOneSelected = true;
+                    break;
+                }
+            }
+
+            if (!atLeastOneSelected) {
+                JOptionPane.showMessageDialog(null, "Please select at least one menu item.", "No Item Selected",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int choice = JOptionPane.showConfirmDialog(null, "Do you want to confirm the order?", "Confirm",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (choice == JOptionPane.YES_OPTION) {
+                String bill = "------ Your Bill ------\n";
+                bill += "Name: " + customerName + "\n";
+                bill += "Phone: " + customerNumber + "\n";
+                bill += "Address: " + customerAddress + "\n\n";
+                int total = 0;
+
+                for (int i = 0; i < handlers.length; i++) {
+                    String itemDetail = handlers[i].getItemSummary();
+                    if (!itemDetail.equals("")) {
+                        bill += itemDetail;
+                        total += handlers[i].getAmount();
+                    }
+                }
+
+                bill += "------------------------\nTotal: ৳" + total;
+                JOptionPane.showMessageDialog(null, bill);
+
+                for (int i = 0; i < handlers.length; i++) {
+                    handlers[i].getCheckBox().setSelected(false);
+                    handlers[i].reset();
+                }
+
+                name.setText("");
+                no.setText("");
+                address.setText("");
+                info.setText("");
+            }
+        }
     }
 }

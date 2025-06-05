@@ -31,7 +31,7 @@ public class OrderProcessor {
             fwriter.write("=========================\n");
             fwriter.write("Customer Name: " + name + "\n");
             fwriter.write("Customer No: " + number + "\n");
-            fwriter.write("Address: " + address + "\n");
+            fwriter.write("Address: " + address + "\n\n");
             fwriter.write("Ordered items \n");
             fwriter.write("-------------------------------\n");
 

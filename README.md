@@ -25,7 +25,9 @@
 
 ## 📷 Screenshot
 
-![Screenshot](./screenshot.png)
+<img width="751" alt="image" src="https://github.com/user-attachments/assets/c69d74bd-2eeb-4c7b-8f74-430d7be52958" />
+
+
 
 ---
 

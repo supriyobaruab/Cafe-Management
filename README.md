@@ -44,5 +44,5 @@
 2. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/cafe-management-system.git
+git clone https://github.com/supriyobaruab/cafe-management-system.git
 cd cafe-management-system

@@ -19,7 +19,7 @@ public class MenuHandler implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (items.isSelected()) {
-            String input = JOptionPane.showInputDialog("Enter the quantity");
+            String input = JOptionPane.showInputDialog("Enter the quantity for " + name + "\nPrice : " + price + "৳");
             if (input == null || input.trim().equals("")) {
                 items.setSelected(false);
                 return;

@@ -336,7 +336,17 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
                 String orderSummary = processor.readOrder();
                 info.setText(orderSummary);
                 info.setCaretPosition(info.getDocument().getLength());
+
+                for (int i = 0; i < handlers.length; i++) {
+                    handlers[i].getCheckBox().setSelected(false);
+                    handlers[i].reset();
+                }
+
+                name.setText("");
+                no.setText("");
+                address.setText("");
             }
+
         }
     }
 }

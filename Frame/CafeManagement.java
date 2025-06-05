@@ -286,6 +286,7 @@ public class CafeManagement extends JFrame implements MouseListener, ActionListe
     }
 
     public void mouseEntered(MouseEvent me) {
+        //
         if (me.getSource() == exit) {
             for (int i = 315; i > 305; i--) {
                 meow1Img.setBounds(550, i, 800, 100);

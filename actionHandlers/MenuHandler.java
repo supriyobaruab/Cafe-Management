@@ -32,7 +32,7 @@ public class MenuHandler implements ActionListener {
                     return;
                 }
                 amount = price * quantity;
-                itemSummary = "Item: " + name + ", Quantity: " + quantity + ", Price: ৳" + price + ", Amount: ৳"
+                itemSummary = "Item: " + name + ", Quantity: " + quantity + ", Price: ৳" + price + ", \nAmount: ৳"
                         + amount + "\n";
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Enter a valid number");

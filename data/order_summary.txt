@@ -1,0 +1,16 @@
+
+Date and Time: 11:29 AM, 05/06/2025
+=========================
+Customer Name: Supriyo Barua
+Customer No: 01636524735
+Address: Bashundhara R/A
+Ordered items 
+-------------------------------
+Item: Americano, Quantity: 1, Price: ৳145, 
+Amount: ৳145
+Item: Pastry, Quantity: 1, Price: ৳150, 
+Amount: ৳150
+Item: Herbal tea, Quantity: 1, Price: ৳250, 
+Amount: ৳250
+-------------------------------
+Total Amount: ৳545

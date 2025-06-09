@@ -19,7 +19,8 @@ public class MenuHandler implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (items.isSelected()) {
-            String input = JOptionPane.showInputDialog("Enter the quantity for " + name + "\nPrice : " + price + "৳");
+            String input = JOptionPane
+                    .showInputDialog("Enter the quantity for " + name + "\nPrice : " + price + "\u09F3");
             if (input == null || input.trim().equals("")) {
                 items.setSelected(false);
                 return;
@@ -32,7 +33,8 @@ public class MenuHandler implements ActionListener {
                     return;
                 }
                 amount = price * quantity;
-                itemSummary = "Item: " + name + ", Quantity: " + quantity + ", Price: ৳" + price + ", \nAmount: ৳"
+                itemSummary = "Item: " + name + ", Quantity: " + quantity + ", Price: \u09F3" + price
+                        + ", \nAmount: \u09F3"
                         + amount + "\n";
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Enter a valid number");
